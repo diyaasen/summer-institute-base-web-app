@@ -48,6 +48,30 @@ class App < Sinatra::Base
     end
   end
 
+  def job_state(job_id)
+    state = `/bin/squeue -j #{job_id} -h -o '%t'`.chomp
+    s = {
+      '' => 'Completed',
+      'R' => 'Running',
+      'C' => 'Completed',
+      'Q' => 'Queued',
+      'CF' => 'Queued',
+      'PD' => 'Queued',
+    }[state]
+
+    s.nil? ? 'Unknown' : s
+  end
+
+  def badge(state)
+    {
+      '' => 'warning',
+      'Unknown' => 'warning',
+      'Running' => 'success',
+      'Queued' => 'info',
+      'Completed' => 'primary',
+    }[state.to_s]
+  end
+
   get '/' do
     logger.info('requesting the index')
     @flash = session.delete(:flash)||{info: 'Welcome to Summer Institute!'}
@@ -68,6 +92,11 @@ class App < Sinatra::Base
         session[:flash]={danger: "#{@dir} does not exist"}
         redirect(url('/'))
       end
+      @images = Dir.glob("#{@dir}/*.png")
+      `touch #{@dir}/.frame_render_job_id`
+      @frame_render_job_id = File.read("#{@dir}/.frame_render_job_id").chomp
+      @frame_render_job_state = job_state(@frame_render_job_id)
+      @frame_render_badge = badge(@frame_render_job_state)
     erb :show_project
     end
   end
@@ -76,6 +105,7 @@ class App < Sinatra::Base
     erb(:new_project)
   end
 
+  
 
   post '/projects/new' do
     logger.info("Trying to render frames with: #{params.inspect}")

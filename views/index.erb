@@ -1,3 +1,4 @@
+<script src=<%= url("/projects.js") %> type="application/javascript" ></script>
 <h1 class="display-4 py-3 mb-3 border-bottom">
   <%= title %>
 </h1>
@@ -7,13 +8,19 @@
 <div class-'row my-5'>
   <ol class="list-group list-group-horizontal flex-wrap col-md-12">
     <% @project_dirs.each do |dir| %>
-    <li class="list-group-item btn btn-outline-dark m-3 border">
+    <li class="list-group-item btn btn-outline-dark m-3 border" id="project_<%= dir%>" data-project=true">
       <div>
         <a href="<%= url("/projects/#{dir}") %>" class="text-center">
           <i class='fas fa-fw fa-folder-open fa-5x'></i>
           <p><%= dir.gsub('_',' ').capitalize %></p>
         </a>
       </div>
+      <button 
+        formaction="<%=url("")%>"
+        type="submit" 
+        class="btn btn-primary float-right d-none" 
+        id"project_delete_<%=dir%>">Delete</button>
+        data-delete-button='true'
     </li>
     <% end %>
   </ol>
