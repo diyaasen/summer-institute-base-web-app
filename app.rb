@@ -123,7 +123,7 @@ class App < Sinatra::Base
     redirect(url("/projects/#{dir}"))
   end
 
-  get '/delete/:dir' do
+  post '/delete/:dir' do
     dir=params[:dir]
     full_path="#{projects_root}/#{dir}"
     FileUtils.remove_dir(full_path,true)
