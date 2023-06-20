@@ -8,23 +8,23 @@
 <div class-'row my-5'>
   <ol class="list-group list-group-horizontal flex-wrap col-md-12">
     <% @project_dirs.each do |dir| %>
-    <li class="list-group-item btn btn-outline-light m-3 border border hoverable" id="project_<%= dir%>" data-hover-hide="true">
-      <i class='fas fa-fw fa-bars float-right' data-hover-hide='true'></i>
+    <li class="list-group-item btn btn-outline-light m-3 border border hoverable" id="project_<%= dir%>">
+      <i class='fas fa-fw fa-bars float-right' data-hover-hide='true'  id="<%= dir %>_options"></i>
       <div>
         <a href="<%= url("/projects/#{dir}") %>" class="text-center">
           <i class='fas fa-fw fa-folder-open fa-5x'></i>
           <p><%= dir.gsub('_',' ').capitalize %></p>
         </a>
       </div>
-      <div id"<%= dir %> extra" data-hideable="true" class="d-none">
+      <div id="<%= dir %>_extra" data-hideable="true" class="d-none">
         <form action="<%=url("/delete/#{dir}")%>" method="post"%>
           <button type="submit" class="btn btn-danger float-center" onclick="return confirm('Do you want to delete this item?');">Delete</button>
         </form>
         <form>
-          <button type="submit" class="btn btn-info float-center">Rename</button>
+          <button type="button" class="btn btn-info float-center" data-toggle="modal" data-target="#rename" id="rename_button">Rename</button>
         </form>
         <form>
-          <button type="submit" class="btn btn-primary float-center">Change Icon</button>
+          <button type="button" class="btn btn-success float-center" data-toggle="modal" data-target="#changeColor" id="change_Color">Icon Color</button>
         </form>
       </div>
     </li>
@@ -32,3 +32,44 @@
   </ol>
 </div>
 <!-- <i class="fa-sharp fa-light fa-folder-open"></i> -->
+
+<div class="modal fade" id="rename" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Rename File</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-field"><input placeholder="Enter new name" class=”validate”></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changeColor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> Choose New Icon Color</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="exampleColorInput" class="form-label">Color Picker</label>
+        <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>

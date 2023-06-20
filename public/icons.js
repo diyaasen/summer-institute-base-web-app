@@ -11,10 +11,11 @@ window.onload=()=>
 
     function toggleButtons(event)
     {
-        const eventId= target.event.id;
-        hideableThing= document.getElementById(`${prefix}_extra`)
+        const eventId = event.target.id;
+        const prefix = eventId.match(/(\w+)_options/)[1];
+        const hideableThing= document.getElementById(`${prefix}_extra`);
         const classes= Array.from(hideableThing.classList);
-        
+
         if(classes.includes('d-none'))
         {
             hideableThing.classList.remove('d-none');

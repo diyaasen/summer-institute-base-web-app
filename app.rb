@@ -79,6 +79,11 @@ class App < Sinatra::Base
     erb(:index)
   end
 
+  post '/save/:dir' do
+    session[:flash]={info:params.inspect}
+    redirect((url('/'))
+  end
+  
   get '/projects/:dir' do
     if params[:dir]=='new' || params[:dir]=='input_files'
       erb(:new_project)
