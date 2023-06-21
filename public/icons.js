@@ -31,12 +31,21 @@ window.onload=()=>
     colorInput= document.getElementById('exampleColorInput');
     function saveChange(event)
     {
-        colorEle= document.getElementById("exampleColorInput");
-        colorEle= colorEle.value;
         console.log(event);
+            colorEle= document.getElementById("exampleColorInput").value;
             key=`${project}_color`;
-            const idk=localStorage.setItem(`${project}_color`, colorEle);
-        // <i class='fas fa-fw fa-folder-open fa-5x' icon='colorEle'></i>
+            localStorage.setItem(`${project}_color`, colorEle);
+            iconId= `${project}_icon`;
+            changeColor();
+    }
+    
+    function changeColor()
+    {
+        iconId=`${project}_icon`;
+        key= key=`${project}_color`;
+        color= localStorage.getItem(key);
+        iconElement= document.getElementById(iconId);
+        iconElement.style.color=color;
     }
 
     window.saveChange = saveChange;
