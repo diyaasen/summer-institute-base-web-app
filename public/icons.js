@@ -31,18 +31,23 @@ window.onload=()=>
     colorInput= document.getElementById('exampleColorInput');
     function saveChange(event)
     {
-        const idk=localStorage.getItem("examplecolorInput");
-        localStorage.setItem("/projects/${","idk");
+        colorEle= document.getElementById("exampleColorInput");
+        colorEle= colorEle.value;
+        console.log(event);
+            key=`${project}_color`;
+            const idk=localStorage.setItem(`${project}_color`, colorEle);
+        // <i class='fas fa-fw fa-folder-open fa-5x' icon='colorEle'></i>
     }
 
     window.saveChange = saveChange;
 
     let saveUrl=undefined;
+    let project=undefined;
 
     $('#changeColor').on('shown.bs.modal', function (event) 
     {
         var button = $(event.relatedTarget) ;
         var recipient = button.data('dir');
-        saveUrl= `/pun/dev/blender/save/${recipient}`;
+        project= recipient;
     })
 }

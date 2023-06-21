@@ -9,7 +9,7 @@
   <ol class="list-group list-group-horizontal flex-wrap col-md-12">
     <% @project_dirs.each do |dir| %>
     <li class="list-group-item btn btn-outline-light m-3 border border hoverable" id="project_<%= dir%>">
-      <i class='fas fa-fw fa-bars float-right' data-hover-hide='true'  id="<%= dir %>_options"></i>
+      <i class='fas fa-fw fa-bars float-right fa-2x' data-hover-hide='true'  id="<%= dir %>_options"></i>
       <div>
         <a href="<%= url("/projects/#{dir}") %>" class="text-center">
           <i class='fas fa-fw fa-folder-open fa-5x'></i>
@@ -68,7 +68,7 @@
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" onclick="saveChange()">Save Changes</button>
+        <button type="submit" class="btn btn-primary" onclick="saveChange(event)">Save Changes</button>
       </div>
     </div>
   </div>
