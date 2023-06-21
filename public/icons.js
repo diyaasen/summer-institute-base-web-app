@@ -24,19 +24,30 @@ window.onload=()=>
         {
             hideableThing.classList.add('d-none');
         }
-    }
-    // function toggleHover(event)
-    // {
-    //     const parentElement= event.target.closest("[data-hover-hide='true']");
-    //     const hideableThing= parentElement.querySelector('[data-hideable="true"]');
 
-    //     if(event.type=='mouseenter')
-    //     {
-    //         hideableThing.classList.remove('d-none');
-    //     }
-    //     else
-    //     {
-    //         hideableThing.classList.add('d-none');
-    //     }
-    // }
+        
+    }
+
+    colorInput= document.getElementById('exampleColorInput');
+    function saveChange()
+    {
+        let formData= new FormData();
+        formData.append('color', colorInput);
+        fetch(saveUrl,
+        {
+            body: formData,
+            method:"post"
+        });
+    }
+
+    window.saveChange = saveChange;
+
+    let saveUrl=undefined;
+
+    $('#changeColor').on('shown.bs.modal', function (event) 
+    {
+        var button = $(event.relatedTarget) 
+        var recipient = button.data('dir')
+        saveUrl= `/pun/dev/blender/save/${recipient}`
+    })
 }
