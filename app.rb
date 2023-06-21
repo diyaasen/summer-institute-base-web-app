@@ -125,7 +125,7 @@ class App < Sinatra::Base
     #erb(:new_project)
     dir= params[:name].downcase.gsub(' ','_')
     "#{projects_root}/#{dir}".tap {|d| FileUtils.mkdir_p(d)}
-    session[:flash]= {info: "made new project '#{params[:name]}'"}
+    session[:flash]= {info: "Made new project: '#{params[:name]}'"}
     redirect(url("/projects/#{dir}"))
   end
 
@@ -133,7 +133,7 @@ class App < Sinatra::Base
     dir=params[:dir]
     full_path="#{projects_root}/#{dir}"
     FileUtils.remove_dir(full_path,true)
-    session[:flash]={info: "Successfully Deleted'#{params[:dir]}'"}
+    session[:flash]={info: "Successfully Deleted' #{params[:dir]}'"}
     redirect(url("/"))
   end
 

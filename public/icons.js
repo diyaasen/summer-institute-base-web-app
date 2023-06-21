@@ -29,15 +29,10 @@ window.onload=()=>
     }
 
     colorInput= document.getElementById('exampleColorInput');
-    function saveChange()
+    function saveChange(event)
     {
-        let formData= new FormData();
-        formData.append('color', colorInput);
-        fetch(saveUrl,
-        {
-            body: formData,
-            method:"post"
-        });
+        const idk=localStorage.getItem("examplecolorInput");
+        localStorage.setItem("/projects/${","idk");
     }
 
     window.saveChange = saveChange;
@@ -46,8 +41,8 @@ window.onload=()=>
 
     $('#changeColor').on('shown.bs.modal', function (event) 
     {
-        var button = $(event.relatedTarget) 
-        var recipient = button.data('dir')
-        saveUrl= `/pun/dev/blender/save/${recipient}`
+        var button = $(event.relatedTarget) ;
+        var recipient = button.data('dir');
+        saveUrl= `/pun/dev/blender/save/${recipient}`;
     })
 }
