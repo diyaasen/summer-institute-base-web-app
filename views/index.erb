@@ -18,13 +18,13 @@
       </div>
       <div id="<%= dir %>_extra" data-hideable="true" class="d-none">
         <form action="<%=url("/delete/#{dir}")%>" method="post"%>
-          <button type="submit" class="btn btn-danger float-center" onclick="return confirm('Do you want to delete this item?');">Delete</button>
+          <button type="submit" class="btn btn-danger float-center my-1" onclick="return confirm('Do you want to delete this item?');">Delete</button>
         </form>
         <form>
-          <button type="button" class="btn btn-info float-center" data-toggle="modal" data-target="#rename" id="rename_button" data-dir="<%= dir %>">Rename</button>
+          <button type="button" class="btn btn-info float-center my-1" data-toggle="modal" data-target="#rename" id="rename_button" data-dir="<%= dir %>">Rename</button>
         </form>
         <form>
-          <button type="button" class="btn btn-success float-center" data-toggle="modal" data-target="#changeColor" id="change_Color" data-dir="<%= dir %>">Icon Color</button>
+          <button type="button" class="btn btn-success float-center my-1" data-toggle="modal" data-target="#changeColor" id="change_Color" data-dir="<%= dir %>">Icon Color</button>
         </form>
       </div>
     </li>

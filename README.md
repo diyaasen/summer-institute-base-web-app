@@ -8,6 +8,12 @@ that uses the [Sinatra] web framework for OSC's [Summer Institute].
 
 Feel free to modify it anyway you see fit.
 
+To open web app on any other server:
+ - open in terminal
+ - bin/setup
+ - bin/start or bundle exec rackup
+ - on google type in localhost:(enter in port #)
+
 ## Deploy
 
 The directions below require Ruby and Bundler be installed and accessible from

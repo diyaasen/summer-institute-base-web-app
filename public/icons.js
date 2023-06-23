@@ -5,8 +5,6 @@ window.onload=()=>
     {
         const element= hovers[i]
         element.addEventListener('click', toggleButtons);
-        //element.addEventListener('mouseenter', toggleHover);
-        //element.addEventListener('mouseleave', toggleHover);
     }
 
     function toggleButtons(event)
